@@ -1,0 +1,454 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-down-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="javascript-skill.html">
+<link rel="import" href="polymer-skill.html">
+<link rel="import" href="css-skill.html">
+<link rel="import" href="python-skill.html">
+<link rel="import" href="problem-solving-skill.html">
+<link rel="import" href="java-skill.html">
+<link rel="import" href="jq-skill.html">
+<link rel="import" href="gh-skill.html">
+<link rel="import" href="angular-skill.html">
+<link rel="import" href="bottom-board.html">
+
+<dom-module id="my-skills">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      span,
+      input {
+        @apply(--paper-font-body2);
+      }
+      #leftMeter {
+      	width: 19%;
+      	float: left;
+      	color: black;
+      }
+      #jsSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:160px;
+      }
+      #plSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:110px;
+      }
+      #csSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:220px;
+      }
+      #pySkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:280px;
+      }
+      #probSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:20px;
+      }
+      #jaSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:270px;
+      }
+      #jqSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:190px;
+      }
+      #ghSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:170px;
+      }
+      #angularSkill {
+      	width: 9%;
+      	float: left;
+      	position: relative;
+      	top:400px;
+      }
+      .fonts {
+        font-family: "din-condensed-web";
+      }
+      .medium {
+        font-size: 2rem;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .large {
+        font-size: 3.5rem;
+        text-transform: uppercase;
+        text-align: center;
+        color: #444;
+      }
+      .spacer {
+      	float: left;
+      	margin-bottom: 40px;
+      }
+      .animate {
+      	background: cornflowerblue;
+      	border-radius: 8px 0px 0px 8px;
+      	border-right: 1px solid white;
+      	margin-left: 47px;
+      }
+      .animate:hover {
+        background: darkblue;
+      }
+      .reset {
+      	background: cornflowerblue;
+      	border-radius: 0px 8px 8px 0px;
+      	border-left: 1px solid white;
+      }
+      .reset:hover {
+        background: darkblue;
+      }
+      .animate, .reset {
+      	display: inline-block;
+      	float: left;
+     	  width: 60px;
+     	  height: 760px;
+     	  color:white;
+     	  cursor: pointer;
+      }
+      #animate {
+      	transform: rotate(270deg);
+      	font-size: 2.5rem;
+      	position: absolute;
+    	  left: -24px;
+    	  top: 535px;
+    	  color: white;
+    	  cursor: pointer;
+    	  display: inline;
+      }
+      #reset {
+      	transform: rotate(90deg);
+	      font-size: 2.5rem;
+	      position: absolute;
+	      left: 1327px;
+	      top: 535px;
+	      color: white;
+	      cursor: pointer;
+	      width: 300px;
+	      display: inline;
+      }
+      #skillsWrapper {
+      	display: inline-block;
+      	float: left;
+      	padding: 30px;
+	      background: aliceblue;
+	      width: 1283px;
+	      padding-bottom: 5px;
+	      padding-right: 10px;
+	      padding-left: 10px;
+        margin-bottom: 100px;
+      }
+        @media only screen and (max-width: 1815px) {
+        #skillsWrapper {
+            width: 1220px;
+            height: 712px;
+            padding: 0px;
+        }
+        #reset {
+          left: 1244px;
+        }
+        .animate, .reset {
+          height: 712px;
+        }
+      }
+      @media only screen and (max-width: 1750px) {
+        #skillsWrapper {
+            width: 1120px;
+            height: 653px;
+        }
+        #leftMeter {
+          margin-right: 25px;
+          height: 653px;
+        }
+        #reset {
+          left: 1147px;
+          top: 503px;
+        }
+        #animate {
+          top: 503px;
+        }
+        #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 95px;
+        }
+        .animate, .reset {
+          height: 653px;
+        }
+        .spacer {
+          margin-bottom: 30px;
+        }
+      }
+      @media only screen and (max-width: 1650px) {
+        #skillsWrapper {
+            width: 1020px;
+            height: 725px;
+        }
+        #leftMeter {
+          margin-right: 45px;
+        }
+        #reset {
+          left: 1048px;
+        }
+        #animate {
+          top: 512px;
+        }
+        #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 86px;
+        }
+      }
+      @media only screen and (max-width: 1540px) {
+        #skillsWrapper {
+            width: 900px;
+            height: 523px;
+        }
+        #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 75px;
+        }
+        #leftMeter {
+          margin-right: 25px;
+          height: 523px;
+        }
+        .spacer {
+          margin-bottom: 30px;
+        }
+        .medium {
+          font-size: 1.47em;
+        }
+        .animate, .reset {
+          height: 523px;
+        }
+        #animate {
+          font-size: 1.75rem;
+          left: 17px;
+          top: 440px;
+        }
+        #reset {
+          font-size: 1.75rem;
+          left: 924px;
+          top: 488px;
+        }
+      }
+      @media only screen and (max-width: 1410px) {
+       #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 65px;
+        }
+        #leftMeter {
+          margin-right: 30px;
+        }
+        #skillsWrapper {
+            width: 765px;
+        }
+        #reset {
+          left: 791px;
+        }
+      }
+      @media only screen and (max-width: 1275px) {
+       #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 50px;
+        }
+        #leftMeter {
+          margin-right: 20px;
+          height: 349px;
+        }
+        .medium {
+          font-size: 1em;
+        }
+        .spacer {
+          margin-bottom: 19px;
+        }
+        #skillsWrapper {
+            width: 600px;
+            height: 349px;
+        }
+        #reset {
+          font-size: 1.25rem;
+          left: 624px;
+          top: 436px;
+        }
+        #animate {
+          top: 361px;
+          font-size: 1.25rem;
+          left: 45px;
+        }
+        .animate, .reset {
+          height: 349px;
+        }
+      }
+      @media only screen and (max-width: 1105px) {
+       #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 43px;
+        }
+        #leftMeter {
+          margin-right: 20px;
+        }
+        #skillsWrapper {
+            width: 505px;
+        }
+        #reset {
+          left: 488px;
+        }
+        #animate {
+          left: 31px;
+        }
+        .animate, .reset {
+          width: 32px;
+        }
+      }
+       @media only screen and (max-width: 960px) {
+        #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 31px;
+        }
+        #leftMeter {
+          margin-right: 0px;
+          height: 203px;
+        }
+        .medium {
+          font-size: .55em;
+        }
+        .spacer {
+          margin-bottom: 11px;
+        }
+        #skillsWrapper {
+            width: 350px;
+            height: 203px;
+        }
+        #reset {
+          font-size: .8rem;
+          left: 333px;
+          top: 390px;
+        }
+        #animate {
+          top: 289px;
+          font-size: .8rem;
+          left: 54px;
+        }
+        .animate, .reset {
+          height: 203px;
+        }
+       }
+       @media only screen and (max-width: 790px) {
+       #jsSkill, #angularSkill, #csSkill, #ghSkill, #jaSkill, #jqSkill, #plSkill, #probSkill, #pySkill {
+          width: 27px;
+        }
+        #leftMeter {
+          margin-right: 10px;
+        }
+        #skillsWrapper {
+            width: 320px;
+        }
+        #reset {
+          left: 246px;
+        }
+        #animate {
+          left: 4px;
+        }
+        .animate, .reset {
+          width: 25px;
+        }
+        .animate {
+          margin-left: 0px;
+        }
+      }
+  
+    </style>
+
+    <div id='pageWrapper'>
+	    <div>
+		    <br>
+		    <hr style="border-top: 2px solid black;">
+		    <div class='fonts large'>Skills</div>
+		    <hr style="border-top: 2px solid black;">
+		    <h3 style='text-align: center; font-family: "din-condensed-web";'>Click On The Play Animation Button To See Skills</h3>
+	    <br>
+		</div>
+	    <div class='animate' on-click='displayJavascriptSkill'></div>	    
+	    <div id='skillsWrapper'>
+	    	<div id='leftMeter' class='fonts medium'>
+	    		<div class='spacer flex'><hr>Expert<hr></div>
+	    		<div class='spacer flex'><hr>Advanced<hr></div>
+	    		<div class='spacer flex'><hr>Proficient<hr></div>
+	    		<div class='spacer flex'><hr>Intermediate<hr></div>
+	    		<div class='spacer flex'><hr>Nube<hr></div>
+	    	</div>
+	    	<javascript-skill id='jsSkill'></javascript-skill>
+	    	<polymer-skill id='plSkill'></polymer-skill>
+	    	<css-skill id='csSkill'></css-skill>
+	    	<python-skill id='pySkill'></python-skill>
+	    	<problem-solving-skill id='probSkill'></problem-solving-skill>
+	    	<java-skill id='jaSkill'></java-skill>
+	    	<jq-skill id='jqSkill'></jq-skill>
+	    	<gh-skill id='ghSkill'></gh-skill>
+	    	<angular-skill id='angularSkill'></angular-skill>
+	    	<bottom-board id='bottomBoard'></bottom-board>
+	    </div>
+	    <div class='reset' on-click='hideJavascriptSkill'></div>
+	</div>
+	<div id='animate' on-click='displayJavascriptSkill'>Play Animation</div>
+	<div id='reset' on-click='hideJavascriptSkill'>Reset Animation</div>
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'my-skills',
+
+        properties: {
+          greeting: {
+            type: String,
+            value: 'Kyle',
+            notify: true
+          }
+        },
+        displayJavascriptSkill: function() {
+        	this.querySelector('javascript-skill').show();
+        	this.querySelector('polymer-skill').show();
+        	this.querySelector('css-skill').show();
+        	this.querySelector('python-skill').show();
+        	this.querySelector('problem-solving-skill').show();
+        	this.querySelector('java-skill').show();
+        	this.querySelector('jq-skill').show();
+        	this.querySelector('gh-skill').show();
+        	this.querySelector('angular-skill').show();
+        	this.querySelector('bottom-board').show();
+        },
+        hideJavascriptSkill: function() {
+        	this.querySelector('javascript-skill').hide();
+        	this.querySelector('polymer-skill').hide();
+        	this.querySelector('css-skill').hide();
+        	this.querySelector('python-skill').hide();
+        	this.querySelector('problem-solving-skill').hide();
+        	this.querySelector('java-skill').hide();
+        	this.querySelector('jq-skill').hide();
+        	this.querySelector('gh-skill').hide();
+        	this.querySelector('angular-skill').hide();
+        	this.querySelector('bottom-board').hide();
+        },
+        attached: function() {
+        	
+        }
+      });
+    })();
+  </script>
+</dom-module>

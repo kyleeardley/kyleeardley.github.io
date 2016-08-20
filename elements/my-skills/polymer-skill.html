@@ -1,0 +1,171 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-in-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-down-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-up-animation.html">
+<link rel="import" href="custom-pl-animation.html">
+
+
+<dom-module id="polymer-skill">
+  <style>
+    :host {
+      display: none;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      text-align: left;
+    }
+    paper-material {
+      padding: 16px;
+      width: 300px;
+    }
+    #test {
+      width: 100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #columnBase {
+      width: 100%;
+      height: 519px;
+      background: #fff;
+      margin-top: -10px;
+    }
+    img {
+      border-radius: 4px 4px 0px 0px;
+      width:100%;
+      height: 109px;
+    }
+    .itemName {
+      text-align: center;
+      margin-top: -21px;
+    }
+    @media only screen and (max-width: 1815px) {
+        #columnBase {
+          height: 503px;
+        }
+      }
+    @media only screen and (max-width: 1750px) {
+        #test {
+      width: 80px;
+        }
+        #columnBase {
+          height: 472px;
+        }
+        img {
+          width: 80px;
+          height: 80px;
+        }
+      }
+      @media only screen and (max-width: 1540px) {
+        #test {
+          width: 60px;
+        }
+        #columnBase {
+          height: 361px;
+        }
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      @media only screen and (max-width: 1275px) {
+        #test {
+          width: 40px;
+          position: relative;
+          top: -54px;
+        }
+        #columnBase {
+          height: 270px;
+        }
+        img {
+          width: 40px;
+          height: 40px;
+        }
+        #poly {
+          font-size: .6em;
+          position: relative;
+          top: 20px;
+        }
+      }
+      @media only screen and (max-width: 960px) {
+        #test {
+          width: 25px;
+          position: relative;
+          top: -74px;
+        }
+        #columnBase {
+          height: 158px;
+        }
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+      @media only screen and (max-width: 790px) {
+        #poly {
+          font-size: .4em;
+        }
+      }
+  </style>
+  <template>
+    <div id='test'>
+      <img src="../../images/polymer.png" alt="Smiley face">
+      <div id='poly' class='itemName fonts'>Polymer</div>
+      <div id='columnBase'></div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'polymer-skill',
+      behaviors: [Polymer.NeonAnimationRunnerBehavior],
+      properties: {
+        opened: {
+          type: Boolean
+        },
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': [
+              	{
+              	name: 'custom-pl-animation',
+                node: this,
+                timing: {delay: 500, duration: 3000},
+              	},
+                {
+                name: 'fade-in-animation',
+                node: this.$.columnBase,
+                timing: {delay: 3500, duration: 1000},
+                }
+                ],
+              'exit': {
+                name: 'fade-out-animation',
+                node: this,
+                timing: {duration: 2000}
+              }
+            }
+          }
+        }
+      },
+      listeners: {
+        'neon-animation-finish': '_onNeonAnimationFinish'
+      },
+      show: function() {
+        this.opened = true;
+        this.style.display = 'inline-block';
+        this.cancelAnimation();
+        this.playAnimation('entry');
+      },
+      hide: function() {
+        this.opened = false;
+        this.cancelAnimation();
+        this.playAnimation('exit');
+      },
+      _onNeonAnimationFinish: function() {
+        if (!this.opened) {
+          this.style.display = 'none';
+        }
+      }
+    });
+  </script>
+</dom-module>

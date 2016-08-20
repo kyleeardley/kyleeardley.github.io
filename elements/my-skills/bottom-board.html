@@ -1,0 +1,97 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/fade-in-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-down-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../../bower_components/neon-animation/animations/slide-up-animation.html">
+
+<dom-module id="bottom-board">
+  <style>
+    :host {
+      display: none;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      text-align: left;
+    }
+    paper-material {
+      padding: 16px;
+      width: 300px;
+    }
+    #one {
+    	width:19%;
+    }
+    #two, #three, #four, #five, #six, #seven, #eight, #nine {
+    	display: inline-block;
+    	color:white;
+    	font-family: Roboto, Helvetica, Arial, sans-serif;
+    	font-size: 25px;
+    	/*width: 9%;*/
+    	margin: 0 auto;
+    	transform: rotate(-90deg);
+    	-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    	
+    }
+    #two {
+    	position: relative;
+    	right: 181px;
+    	bottom: 42px;
+    }
+    #bottomWrapper {
+    	position: absolute;
+    	bottom:117px;
+
+    }
+    
+  </style>
+  <template>
+	
+  </template>
+  <script>
+    Polymer({
+      is: 'bottom-board',
+      behaviors: [Polymer.NeonAnimationRunnerBehavior],
+      properties: {
+        opened: {
+          type: Boolean
+        },
+        animationConfig: {
+          value: function() {
+            return {
+              'entry': 
+              	{
+              	name: 'fade-in-animation',
+                node: this,
+                timing: {delay: 500, duration: 5000},
+              	},
+              'exit': {
+                name: 'fade-out-animation',
+                node: this,
+                timing: {duration: 2000}
+              }
+            }
+          }
+        }
+      },
+      listeners: {
+        'neon-animation-finish': '_onNeonAnimationFinish'
+      },
+      show: function() {
+        this.opened = true;
+        this.style.display = 'inline-block';
+        this.cancelAnimation();
+        this.playAnimation('entry');
+      },
+      hide: function() {
+        this.opened = false;
+        this.cancelAnimation();
+        this.playAnimation('exit');
+      },
+      _onNeonAnimationFinish: function() {
+        if (!this.opened) {
+          this.style.display = 'none';
+        }
+      }
+    });
+  </script>
+</dom-module>

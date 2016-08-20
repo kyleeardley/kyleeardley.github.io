@@ -1,0 +1,289 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="custom-bounce-in-animation.html">
+
+<dom-module id="about-me">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      .fonts {
+        font-family: "din-condensed-web";
+      }
+
+      .large {
+        font-size: 3.5rem;
+        text-transform: uppercase;
+        text-align: center;
+        color: #444;
+      }
+      #text {
+        float: left;
+        width: 60%;
+      }
+      #pageWrapper {
+        padding-left: 15%;
+        padding-right: 15%;
+        margin-top: 30px;
+      }
+      p {
+        margin-right: 50px;
+      }
+      #image {
+        width: 40%;
+        float: left;
+      }
+      img {
+        width: 100%;
+      }
+      iron-icon {
+        width: 88px;
+        height: 88px;
+        color: crimson;
+        display: block;
+        margin-top: 20px;
+      }
+      iron-icon:hover{
+        color:red;
+      }
+      #icons {
+        height: 160px;
+        width: 233%;
+      }
+      a, #gitImage {
+        text-decoration: none;
+      }
+      #gitImageBox {
+        width: 88px;
+        height: 88px;
+        color: crimson;
+        float: left;
+        margin-top: 18px;
+        margin-right: 65px;
+      }
+      #github {
+        text-align: center;
+        text-decoration: none;
+        position: relative;
+        left: 20px;
+      }
+      #pageWrapper {
+        height: 750px;
+      }
+      #resume {
+        text-decoration: none;
+        color:crimson;
+      }
+      #resumeIframe, #coverLetterIframe {
+        width:97%;
+        height:90%;
+      }
+      #resumeBox {
+        float: left;
+        margin-left: 87px;
+        margin-right: 65px;
+
+        cursor: pointer;
+      }
+      #coverLetterBox {
+        float: left;
+        cursor: pointer;
+        display: inline-block;
+        color:crimson;
+      }
+      #coverLetter {
+        margin-left: 6px;
+      }
+      #resumeModal {
+        height: 80%;
+        width: 75%
+      }
+      #coverLetterModal{
+        height: 80%;
+        width: 75%
+      }
+      span,
+      input {
+        @apply(--paper-font-body2);
+      }
+       @media only screen and (max-width: 1410px) {
+       #text {
+        font-size: .8em;
+       }
+       #resumeModal {
+        height: 85%;
+        width: 85%
+        }
+      #coverLetterModal{
+        height: 85%;
+        width: 85%
+        }
+      }
+      @media only screen and (max-width: 1150px) {
+       #text {
+        font-size: .7em;
+       }
+       #resumeModal {
+        height: 95%;
+        width: 95%
+        }
+      #coverLetterModal{
+        height: 95%;
+        width: 95%
+        }
+      }
+      @media only screen and (max-width: 950px) {
+       #text {
+        font-size: .6em;
+       }
+      }
+    </style>
+
+    <br>
+    <span id='top'>
+      <hr style="border-top: 2px solid black;">
+      <br>
+      <div class='fonts large'>About Me</div>
+      <br>
+      <hr style="border-top: 2px solid black;">
+      <h3 style='text-align: center; font-family: "din-condensed-web"; font-size: 1.4em;'>Kyle Eardley Software Engineer</h3>
+      <br>
+    </span>
+    <div id='pageWrapper'>
+      <div id='text'>
+        <p style='margin-top: 0px;'>
+          I am passionate about learning in every area. In fact when I'm not doing fun stuff with my family
+          I like to learn about new technologies like Polymer JS, Firebase, and improving my skills as a programmer.
+          I'm also interested in many other things like: cooking, sports, fishing, mechanical systems and many more.
+          I try to push myself to be my best and to never stop learning and improving.<br><br>
+
+          My current technical expertise includes languages, frameworks, libraries, and more (including Java, Javascript, Python,
+          Ruby, Django, Rails, Polymer JS, jQuery, CSS, HTML, Angular JS, Git, JSON, REST, MySQL, UI/UX);
+          and good knowledge of developer applications, tools, methodologies and best practices
+          (including OOP, client/server architecture).<br><br>
+
+          I am currently working as a software engineer for iGlobal Stores, where I have been repeatedly
+          recognized for developing innovative solutions for our main software product The Verse. I am
+          responsible for much of the development of this next-generation software, from initial requirement
+          gathering to design, coding, testing, documentation and implementation.<br><br>
+
+          I am also known for excellent interpersonal skills and an always happy attitude.  I'd like to think that I offer
+          a unique ability to complete tasks efficiently with an easy going personality.
+          <br><br>
+        </p>
+
+        <div id='icons'>
+          <div id='resumeBox' on-click="resumeModalOpen">
+            <iron-icon id='resumeIcon' icon='content-copy' on-mouseenter='startAnimation' data-args="Resume"></iron-icon>
+            <span id='resume'>View Resume</span>
+          </div>
+          <div id='gitImageBox'>
+            <a href='https://github.com/kyleeardley' target='_blank'>
+              <img src='../../images/github.png' id='gitImage' on-mouseenter='startAnimation' data-args="Github">
+              <span id='github'>GitHub</span>
+            </a>
+          </div>
+          <div id='coverLetterBox' on-click="coverLetterModalOpen">
+            <iron-icon id='coverLetterImage' icon='mail' on-mouseenter='startAnimation' data-args="CoverLetter"></iron-icon>
+              <span id='coverLetter'>Cover Letter</span>
+          </div>
+        </div>
+      </div>
+      <div id='image'>
+         <img src=../../images/kyle4.JPG>
+      </div>
+      <div id='social'>
+        <a href='https://www.facebook.com/kyle.eardley.1' target='_blank'>facebook</a> / 
+        <a href='https://github.com/kyleeardley' target='_blank'>github</a> / 
+        <a href='https://www.linkedin.com/in/kyle-eardley-a9310b7b?trk=hp-identity-name' target='_blank'>linkedin</a>
+      </div>
+    </div>
+
+    <paper-dialog id="resumeModal" modal>
+      <iframe src="../../images/resume.pdf#zoom=120" id='resumeIframe' frameborder="no"></iframe>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Close</paper-button>
+      </div>
+    </paper-dialog>
+
+    <paper-dialog id="coverLetterModal" modal>
+      <iframe src="../../images/genericCoverLetter.pdf#zoom=120" id='coverLetterIframe' frameborder="no"></iframe>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Close</paper-button>
+      </div>
+    </paper-dialog>
+  
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'about-me',
+
+        behaviors: [Polymer.NeonAnimationRunnerBehavior],
+
+        properties: {
+          animationConfig: {
+          value: function() {
+            return {
+              'entryResume': 
+                {
+                name: 'custom-bounce-in-animation',
+                node: this.$.resumeIcon,
+                timing: {delay: 0, duration: 300},
+                },
+              'entryGithub': 
+                {
+                name: 'custom-bounce-in-animation',
+                node: this.$.gitImage,
+                timing: {delay: 0, duration: 300},
+                },
+              'entryCoverLetter': 
+                {
+                name: 'custom-bounce-in-animation',
+                node: this.$.coverLetterImage,
+                timing: {delay: 0, duration: 300},
+                },
+              'exit': {
+                name: 'fade-out-animation',
+                node: this,
+                timing: {duration: 2000}
+              }
+            }
+          }
+        }
+        },
+        startAnimation: function(event) {
+          var nodeId = 'entry' + event.target.dataset.args;
+          this.show(nodeId);
+        },
+        resumeModalOpen: function() {
+          this.$.resumeModal.open();
+        },
+        coverLetterModalOpen: function() {
+          this.$.coverLetterModal.open();
+        },
+        show: function(nodeId) {
+        this.opened = true;
+        this.style.display = 'inline-block';
+        this.cancelAnimation();
+        this.playAnimation(nodeId);
+        },
+        hide: function() {
+          this.opened = false;
+          this.cancelAnimation();
+          this.playAnimation('exit');
+        },
+        _onNeonAnimationFinish: function() {
+          if (!this.opened) {
+            this.style.display = 'none';
+          }
+        }
+      });
+    })();
+  </script>
+</dom-module>
